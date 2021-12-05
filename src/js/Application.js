@@ -32,6 +32,13 @@ export default class Application extends EventEmitter {
       card.render();
 
       document.querySelector(".main").appendChild(card.container);
+	  
+	  card.addListener(Card.events.ADD_TO_CART, () => {
+		  var notification = new Notification();
+		  notification.render({ ...pizza });
+
+      document.querySelector(".main").appendChild(notification.container);
+	  });
     });
 
     this.emit(Application.events.READY);
